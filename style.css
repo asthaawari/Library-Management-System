@@ -1,0 +1,307 @@
+body{
+margin:0;
+font-family:Arial;
+}
+
+/* header */
+
+.header{
+
+height:60px;
+
+/* background:linear-gradient(
+135deg,
+#6a7cff,
+#8a5cff
+); */
+
+background:#a5a8cd;
+
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:0 20px;
+
+}
+
+.adminBox{
+
+cursor:pointer;
+
+position:relative;
+
+z-index:1001;   /* IMPORTANT */
+
+}
+
+.adminMenu{
+
+position:absolute;
+
+right:0;
+top:40px;
+
+background:#ffffff;   /* changed */
+
+color:black;
+
+display:none;
+
+border:1px solid black;
+
+z-index:1000;   /* VERY IMPORTANT */
+
+box-shadow:0 0 10px gray;
+
+}
+
+.adminMenu div{
+
+padding:10px;
+cursor:pointer;
+
+}
+
+.adminMenu div:hover{
+background:#eee;
+}
+
+
+/* layout */
+
+.container{
+display:flex;
+height:calc(100vh - 60px);
+}
+
+/* sidebar */
+
+.sidebar{
+    background:linear-gradient(
+135deg,
+#6a7cff,
+#8a5cff
+);
+
+color:white;
+
+width:200px;
+
+
+padding-top:20px;
+
+}
+
+.sidebar div{
+
+padding:15px;
+cursor:pointer;
+
+}
+
+.sidebar div:hover{
+
+background:#ccc;
+
+}
+
+
+/* main */
+
+.main{
+
+flex:1;
+
+padding:20px;
+
+position:relative;
+
+}
+
+
+/* pages */
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+
+/* dashboard */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+200px 200px;
+
+gap:20px;
+
+}
+
+.card{
+
+height:120px;
+
+background:
+linear-gradient(
+135deg,
+#6a7cff,
+#8a5cff
+);
+
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:22px;
+
+text-align:center;
+
+cursor:pointer;
+
+}
+
+
+/* library image */
+
+.library{
+
+position:absolute;
+
+right:0;
+top:0;
+
+width:60%;
+height:100%;
+
+background:url("library.jpg");
+
+background-size:cover;
+
+opacity:0.8;
+
+z-index:-1;   /* IMPORTANT FIX */
+
+}
+
+
+/* form */
+
+.form{
+
+width:400px;
+
+display:flex;
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.form input{
+
+padding:10px;
+
+}
+
+button{
+
+padding:10px;
+
+background:black;
+color:white;
+
+}
+
+
+/* table */
+
+table{
+
+width:600px;
+
+border-collapse:collapse;
+
+}
+
+th,td{
+
+border:1px solid #ccc;
+
+padding:10px;
+
+}
+
+
+/* popup */
+
+#popup{
+
+position:fixed;
+
+top:20px;
+right:20px;
+
+background:green;
+
+color:white;
+
+padding:10px;
+
+display:none;
+
+}
+.formCard{
+
+width:400px;
+
+background:white;
+
+padding:20px;
+
+box-shadow:0 0 10px gray;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.formCard label{
+
+font-weight:bold;
+
+}
+
+.formCard input{
+
+padding:8px;
+
+border:1px solid gray;
+
+}
+
+.formCard button{
+
+margin-top:10px;
+
+padding:10px;
+
+background:black;
+
+color:white;
+
+cursor:pointer;
+
+}

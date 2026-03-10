@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LMS</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+Library Management System
+
+<div class="adminBox" onclick="toggleAdmin()">
+
+admin ▼
+
+<div class="adminMenu" id="adminMenu">
+
+<div onclick="showPage('login')">Login</div>
+<div onclick="showPage('register')">Register</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="container">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div onclick="showPage('dashboard')">Dashboard</div>
+<div onclick="showPage('addBook')">Add Book</div>
+<div onclick="showPage('addStudent')">Add Student</div>
+<div onclick="showPage('issueBook')">Issue Book</div>
+<div onclick="showPage('returnBook')">Return Book</div>
+<div onclick="showPage('issuedBooks')">Issued Books</div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+    <div id="login" class="page">
+
+<h2>Login</h2>
+
+<div class="formCard">
+
+<label>Username</label>
+<input id="loginUser">
+
+<label>Password</label>
+<input id="loginPass" type="password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+</div>
+
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="page active">
+
+<h2>Dashboard</h2>
+
+<div class="grid">
+
+<div class="card" onclick="showPage('addBook')">ADD<br>BOOK</div>
+<div class="card" onclick="showPage('addStudent')">ADD<br>STUDENT</div>
+<div class="card" onclick="showPage('issueBook')">ISSUE<br>BOOK</div>
+<div class="card" onclick="showPage('returnBook')">RETURN<br>BOOK</div>
+
+</div>
+
+<div class="library"></div>
+
+</div>
+
+
+
+<!-- ADD BOOK -->
+
+<div id="addBook" class="page">
+
+<h2>Add Book</h2>
+
+<div class="formCard">
+
+<label>Title</label>
+<input id="bookName">
+
+<label>Author</label>
+<input id="bookAuthor">
+
+<label>ISBN</label>
+<input id="bookISBN">
+
+<button onclick="addBook()">Add Book</button>
+
+</div>
+
+</div>
+
+
+<!-- ADD STUDENT -->
+<div id="addStudent" class="page">
+
+<h2>Add Student</h2>
+
+<div class="formCard">
+
+<label>Name</label>
+<input id="studentName">
+
+<label>ID</label>
+<input id="studentID">
+
+<label>Email</label>
+<input id="studentEmail">
+
+<button onclick="addStudent()">Add Student</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ISSUE -->
+
+<div id="issueBook" class="page">
+
+<h2>Issue Book</h2>
+
+<div class="formCard">
+
+<label>Book</label>
+<input id="issueBookName">
+
+<label>Student</label>
+<input id="issueStudent">
+
+<label>Date</label>
+<input type="date" id="issueDate">
+
+<button onclick="issueBook()">Issue</button>
+
+</div>
+
+</div>
+
+
+
+
+<!-- RETURN -->
+
+<div id="returnBook" class="page">
+
+<h2>Return Book</h2>
+
+<div class="formCard">
+
+<label>Book</label>
+<input id="returnBookName">
+
+<label>Date</label>
+<input type="date">
+
+<button onclick="returnBook()">Return</button>
+
+</div>
+
+</div>
+
+
+
+<!-- TABLE -->
+
+<div id="issuedBooks" class="page">
+
+<h2>Issued Books</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Book</th>
+<th>Student</th>
+</tr>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+
+
+<!-- LOGIN -->
+
+<div id="login" class="page">
+
+<h2>Login</h2>
+
+<div class="form">
+
+<input id="loginUser">
+<input id="loginPass">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+</div>
+
+
+
+<!-- REGISTER -->
+
+<div id="register" class="page">
+
+<h2>Register</h2>
+
+<div class="form">
+
+<input id="regUser">
+<input id="regPass">
+
+<button onclick="register()">Register</button>
+
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
+
+
+<div id="popup">Success</div>
+
+
+
+<script>
+    
+
+let users=[]
+let issued=[]
+
+
+function register(){
+
+let u = document.getElementById("regUser").value
+let p = document.getElementById("regPass").value
+
+users.push({u,p})
+
+popup("Registered")
+
+}
+
+function login(){
+
+let u = document.getElementById("loginUser").value
+let p = document.getElementById("loginPass").value
+
+let ok = users.find(x => x.u==u && x.p==p)
+
+if(ok){
+
+popup("Login success")
+
+showPage("dashboard")
+
+}else{
+
+popup("Wrong login")
+
+}
+
+}
+
+function showPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById(id).classList.add("active")
+
+}
+
+
+function toggleAdmin(){
+
+let m=document.getElementById("adminMenu")
+
+m.style.display =
+m.style.display=="block" ? "none" : "block"
+
+}
+
+
+function popup(msg){
+
+let p=document.getElementById("popup")
+
+p.innerHTML=msg
+
+p.style.display="block"
+
+setTimeout(()=>{
+p.style.display="none"
+},1500)
+
+}
+
+
+function register(){
+
+users.push({
+u:regUser.value,
+p:regPass.value
+})
+
+popup("Registered")
+
+}
+
+
+function login(){
+
+let ok=users.find(x=>
+x.u==loginUser.value &&
+x.p==loginPass.value
+)
+
+if(ok){
+popup("Login success")
+showPage("dashboard")
+}else{
+popup("Wrong login")
+}
+
+}
+
+
+function addBook(){
+
+popup("Book added")
+
+}
+
+
+function addStudent(){
+
+popup("Student added")
+
+}
+
+
+function issueBook(){
+
+issued.push({
+b:issueBookName.value,
+s:issueStudent.value
+})
+
+updateTable()
+
+popup("Issued")
+
+}
+
+
+function returnBook(){
+
+issued =
+issued.filter(
+x=>x.b!=returnBookName.value
+)
+
+updateTable()
+
+popup("Returned")
+
+}
+
+
+function updateTable(){
+
+let body=document.getElementById("tableBody")
+
+body.innerHTML=""
+
+issued.forEach((x,i)=>{
+
+body.innerHTML+=
+`<tr>
+<td>${i}</td>
+<td>${x.b}</td>
+<td>${x.s}</td>
+</tr>`
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
